@@ -1,15 +1,15 @@
-package gotk_test
+package main
 
 import (
 	"fmt"
-	"github.com/djbckr/gotk"
 	"math"
 	"strconv"
 	"strings"
-	"testing"
+
+	gotk "github.com/sysdeep/gotk_wish"
 )
 
-func TestTk(t *testing.T) {
+func main() {
 	// instantiate Tk (executes the wish program)
 	ui := gotk.Tk()
 
@@ -63,7 +63,7 @@ func TestTk(t *testing.T) {
 				return
 			}
 
-			rsltVal := math.Round(float64(ftVal) * 0.3048 * 10000.0) / 10000.0
+			rsltVal := math.Round(float64(ftVal)*0.3048*10000.0) / 10000.0
 
 			meters.SetText(fmt.Sprintf("%v", rsltVal))
 		}
@@ -99,22 +99,22 @@ func TestTk(t *testing.T) {
 
 	go func() {
 		for {
-			_ = <-mousewheel
+			<-mousewheel
 		}
 	}()
 
-	rslt := ui.FileOpenStart().
-		SetMultiple(true).
-		SetTitle("whatever").
-		Exec()
+	// rslt := ui.FileOpenStart().
+	// 	SetMultiple(true).
+	// 	SetTitle("whatever").
+	// 	Exec()
 
-	for _, v := range rslt {
-		fmt.Println(v)
-	}
+	// for _, v := range rslt {
+	// 	fmt.Println(v)
+	// }
 
 	fmt.Println(ui.WindowingSystem())
 
 	ui.Wait()
 
-//	ui.Close()
+	// ui.Close()
 }
